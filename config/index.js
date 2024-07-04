@@ -1,14 +1,23 @@
 import { defineConfig } from '@tarojs/cli'
-
+import ComponentsPlugin from 'unplugin-vue-components/webpack'
+import NutUIResolver from '@nutui/auto-import-resolver'
 import devConfig from './dev'
 import prodConfig from './prod'
-
+const path = require('path')
+const resolve = dir => path.resolve(__dirname, '..', dir)
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
   const baseConfig = {
     projectName: 'myApp',
     date: '2024-7-4',
-    designWidth: 750,
+    designWidth (input) {
+      // 配置 NutUI 375 尺寸
+      if (input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
+        return 375
+      }
+      // 全局使用 Taro 默认的 750 尺寸
+      return 750
+    },
     deviceRatio: {
       640: 2.34 / 2,
       750: 1,
@@ -17,7 +26,7 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
+    plugins:  ['@tarojs/plugin-html'],
     defineConstants: {
     },
     copy: {
@@ -55,7 +64,12 @@ export default defineConfig(async (merge, { command, mode }) => {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
-      }
+      },
+      webpackChain(chain) {
+        chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
+          resolvers: [NutUIResolver({taro: true})]
+        }))
+      },
     },
     h5: {
       publicPath: '/',
@@ -81,7 +95,12 @@ export default defineConfig(async (merge, { command, mode }) => {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
-      }
+      },
+      webpackChain(chain) {
+        chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
+          resolvers: [NutUIResolver({taro: true})]
+        }))
+      },
     },
     rn: {
       appName: 'taroDemo',
