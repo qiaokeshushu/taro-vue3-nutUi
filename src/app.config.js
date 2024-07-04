@@ -31,7 +31,7 @@ export default defineAppConfig({
     ]
   },
 
-  requiredPrivateInfos: ["getLocation"],
+  requiredPrivateInfos: ["getLocation","chooseLocation"],
   permission: {
     "scope.userLocation": {
       desc: "你的位置信息将用于向您推荐附近的活动",

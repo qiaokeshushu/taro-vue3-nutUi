@@ -1,5 +1,6 @@
 import { getAccountInfoSync } from "@tarojs/taro";
 export const getEnv = () => {
+  // 字节小程序不支持 getAccountInfoSync方法
   const envVersion = getAccountInfoSync().miniProgram.envVersion;
   return envVersion;
 }
