@@ -4,6 +4,7 @@ export default defineStore("globa", {
     return {
       navHeight: 0,
       safeArea: 0,
+      currentTabIndex:0
     }
   },
   actions: {
@@ -12,6 +13,9 @@ export default defineStore("globa", {
     },
     setSafeArea(num) {
       this.safeArea = num
+    },
+    setCurrentTabIndex(index) {
+      this.currentTabIndex = index
     }
   }
 })
