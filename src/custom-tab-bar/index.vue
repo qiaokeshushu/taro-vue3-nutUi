@@ -1,22 +1,22 @@
 <template>
-  <view  class="zxTabBar" :style="{ paddingBottom: bottomDis + 'px' }">
+  <view  class="custom-tab-bar" :style="{ paddingBottom: bottomDis + 'px' }">
     <view
-      class="customTabBar_part"
+      class="custom-tab-bar-item"
       v-for="(item, index) in tabBar"
       :key="item.id"
       @tap="handleTab(item, index)"
     >
       <image
         v-show="currentTabIndex != index"
-        class="customTabBar_part_img"
+        class="custom-tab-bar-img"
         :src="item.icon"
       ></image>
       <image
         v-show="currentTabIndex == index"
-        class="customTabBar_part_img"
+        class="custom-tab-bar-img"
         :src="item.selectIcon"
       ></image>
-      <text class="customTabBar_part_name">{{ item.name }}</text>
+      <text class="custom-tab-bar-name">{{ item.name }}</text>
     </view>
   </view>
 </template>
