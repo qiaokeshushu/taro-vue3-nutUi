@@ -5,19 +5,17 @@
   justify-content: space-around;
   align-items: center;
   padding-top: 12rpx;
-
   .custom-tab-bar-item {
-      color: #141B22;
-      font-size: 20rpx;
-      text-align: center;
-      padding-bottom: 10rpx;
-      position: relative;
-
-      .custom-tab-bar-img {
-          width: 48rpx;
-          height: 48rpx;
-          margin-bottom: 2rpx;
-          display: block;
-      }
+    color: #141B22;
+    font-size: 20rpx;
+    text-align: center;
+    padding-bottom: 10rpx;
+    position: relative;
+    .custom-tab-bar-img {
+      width: 48rpx;
+      height: 48rpx;
+      margin-bottom: 2rpx;
+      display: block;
+    }
   }
 }
