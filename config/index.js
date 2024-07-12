@@ -65,6 +65,10 @@ export default defineConfig(async (merge, { command, mode }) => {
           }
         }
       },
+      miniCssExtractPluginOption: {
+        //忽略css文件引入顺序
+        ignoreOrder: true
+      },
       webpackChain(chain) {
         chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
           resolvers: [NutUIResolver({taro: true})]

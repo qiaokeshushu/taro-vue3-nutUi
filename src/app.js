@@ -4,7 +4,7 @@ import { createPinia } from "pinia";
 import Taro from '@tarojs/taro'
 
 const App = createApp({
-  onLaunch () {
+  onLaunch() {
     Taro.login({
       success: (res) => {
         console.log(res)

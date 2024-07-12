@@ -33,7 +33,7 @@ export const axios = (url, method, data) => {
               },
             });
           }
-          
+
           reject(res);
         }
       },

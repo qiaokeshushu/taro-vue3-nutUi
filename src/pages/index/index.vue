@@ -3,7 +3,7 @@
     <customNavigation title="首页" :isArrow="false" bgc="#f5f6f7"></customNavigation>
     <view>{{ msg }}</view>
     <view>
-      环境：{{ getEnv() }}
+      环境1：{{ getEnv() }}
     </view>
     <button open-type="getPhoneNumber" size="small" @getPhoneNumber="getPhoneNumber">获取手机号</button>
     <button open-type="share" size="small" data-title="分享">分享</button>
@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import Taro,{useShareAppMessage} from '@tarojs/taro'
+import Taro,{useShareAppMessage,useLoad} from '@tarojs/taro'
 import customNavigation from '@/components/customNavigation/index.vue'
 import { globaStore } from '@/store' 
 import { storeToRefs } from "pinia";
@@ -23,6 +23,7 @@ const globa = globaStore()
 const { navHeight } = storeToRefs(globa)
 const getPhoneNumber = (e) => {
   console.log(e);
+  console.log(Taro.getAccountInfoSync());
 }
 useShareAppMessage((res) => {
     if (res.from === 'button') {
@@ -37,5 +38,7 @@ useShareAppMessage((res) => {
       title: '自定义转发标题',
       path: '/page/index',
     }
-  })
+})
+useLoad(() => {
+})
 </script>
